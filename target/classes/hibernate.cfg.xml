@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- ===== OPTION 1 : H2 (Base en mémoire, aucune installation requise) ===== -->
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.url">jdbc:h2:file:./inventorydb;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- ===== OPTION 2 : MySQL (décommentez et commentez l'option H2 ci-dessus) =====
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/inventorymanagement?createDatabaseIfNotExist=true&amp;useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        -->
+
+        <!-- Configuration Hibernate -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Connection pool basique -->
+        <property name="hibernate.connection.pool_size">10</property>
+
+        <!-- Mapping des classes -->
+        <mapping class="com.example.model.User"/>
+        <mapping class="com.example.model.Product"/>
+
+    </session-factory>
+</hibernate-configuration>
